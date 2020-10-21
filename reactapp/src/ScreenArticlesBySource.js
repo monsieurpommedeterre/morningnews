@@ -16,7 +16,7 @@ function ScreenArticlesBySource(props) {
 
   useEffect(() => {
     const findArticles = async() => {
-      const data = await fetch(`https://newsapi.org/v2/top-headlines?sources=${props.match.params.id}&apiKey=9de50ca6295d47e0855b01f48e9731fd`)
+      const data = await fetch(`https://newsapi.org/v2/top-headlines?sources=${props.match.params.id}&apiKey=689f0138902347209494dce29c320602`)
       const body = await data.json()
       console.log(body)
       setArticleList(body.articles) 
@@ -79,6 +79,11 @@ function ScreenArticlesBySource(props) {
                   />
 
                 </Card>
+
+              </div>
+
+              ))}
+              
                 <Modal
                   title={title}
                   visible={visible}
@@ -87,11 +92,6 @@ function ScreenArticlesBySource(props) {
                 >
                   <p>{title}</p>
                 </Modal>
-
-              </div>
-
-              ))}
-              
 
 
             

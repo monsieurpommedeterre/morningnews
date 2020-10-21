@@ -6,13 +6,15 @@ import {provider, Provider} from 'react-redux'
 import {createStore, combineReducers} from 'redux'
 
 import wishList from './reducers/articles'
+import userToken from './reducers/token'
+import userLang from './reducers/lang'
 
 import ScreenHome from './ScreenHome';
 import ScreenArticlesBySource from './ScreenArticlesBySource'
 import ScreenMyArticles from './ScreenMyArticles'
 import ScreenSource from './ScreenSource'
 
-const store = createStore(combineReducers({wishList}))
+const store = createStore(combineReducers({wishList, userToken, userLang}))
 
 function App() {
   return (

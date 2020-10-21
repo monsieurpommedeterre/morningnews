@@ -63,4 +63,15 @@ h4 {
 
 }
 
+.rowPerso {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.rowPerso span {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
 

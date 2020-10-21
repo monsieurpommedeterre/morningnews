@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+require('dotenv').config();
 
 var options = {
     connectTimeoutMS: 5000,
@@ -6,7 +7,7 @@ var options = {
     useNewUrlParser: true,
 }
 
-mongoose.connect('mongodb+srv://david:hgm4lRQq8QM1p3P8@cluster0-9xbpy.mongodb.net/morningnews?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGO_CONNECTION,
     options,
     function(err){
         console.log(err);

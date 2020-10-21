@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import './App.css';
 import {Input,Button} from 'antd';
 import {Link, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-function ScreenHome() {
+function ScreenHome(props) {
 
   const [signUpUsername, setSignUpUsername] = useState('')
   const [signUpEmail, setSignUpEmail] = useState('')
@@ -13,6 +14,7 @@ function ScreenHome() {
   const [signInPassword, setSignInPassword] = useState('')
 
   const [userExists, setUserExists] = useState(false)
+  //const [userToken, setUserToken] = useState('')
 
   const [listErrorsSignin, setErrorsSignin] = useState([])
   const [listErrorsSignup, setErrorsSignup] = useState([])
@@ -29,6 +31,9 @@ function ScreenHome() {
 
     if(body.result == true){
       setUserExists(true)
+      //setUserToken(body.token)
+      //console.log('token', body.token)
+      props.saveUserToken(body.token)
     } else {
       setErrorsSignup(body.error)
     }
@@ -45,6 +50,8 @@ function ScreenHome() {
     const body = await data.json()
 
     if(body.result == true){
+      //console.log("token",body.user.token)
+      props.saveUserToken(body.user.token)
       setUserExists(true)
     }  else {
       setErrorsSignin(body.error)
@@ -101,5 +108,15 @@ function ScreenHome() {
       </div>
   );
 }
-
-export default ScreenHome;
+function mapDispatchToProps(dispatch) {
+  return {
+    saveUserToken:function(userToken){
+      dispatch({type:'sendToken', token: userToken})
+    }
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(ScreenHome)
+//export default ScreenHome;
